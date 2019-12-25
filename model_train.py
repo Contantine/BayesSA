@@ -13,18 +13,21 @@ file_path = u'train_data/train_data.xlsx'
 comments = []
 tendency = []
 # 训练模型导出路径
-model_export_path = 'model.pkl'
+model_export_path = 'models/model_1225_01.pkl'
 
 
 # 加载数据
 def init_data():
     wb = load_workbook(file_path)
     ws = wb.active
-    for row in range(2, ws.max_row + 1):
+    for row in range(1, ws.max_row + 1):
         comments.append(str(ws['A' + str(row)].value).replace('\n', ''))
         if ws['B' + str(row)].value is None:
             print(row)
+        # try:
         tendency.append(int(ws['B' + str(row)].value))
+        # except:
+        #     print(row)
 
 
 # 加载停用词
@@ -50,9 +53,9 @@ if __name__ == '__main__':
     init_data()
     n = len(comments) // 5
     # 训练集
-    train_comment_list, train_tendency_list = comments[n:], tendency[n:]
+    train_comment_list, train_tendency_list = comments, tendency
     # 测试集
-    test_comment_list, test_tendency_list = comments[:n], tendency[:n]
+    test_comment_list, test_tendency_list = comments, tendency
     print('训练集数量： {}'.format(str(len(train_comment_list))))
     print('测试集数量： {}'.format(str(len(test_comment_list))))
 

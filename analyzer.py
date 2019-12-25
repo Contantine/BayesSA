@@ -1,6 +1,9 @@
+#!usr/bin/python
 # -*- coding: utf-8 -*-
+import os
 import re
 import pickle
+import sys
 
 import numpy as np
 import jieba
@@ -62,5 +65,5 @@ class SentimentAnalyzer(object):
         neg = result[0][0]
         pos = result[0][1]
 
-        print('负面： {} 正面： {}'.format(neg, pos))
+        # print('负面： {} 正面： {}'.format(neg, pos))
         return pos
